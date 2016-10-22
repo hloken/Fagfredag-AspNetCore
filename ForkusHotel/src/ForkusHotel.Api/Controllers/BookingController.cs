@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+// ReSharper disable InconsistentNaming
 
 namespace ForkusHotel.Controllers
 {
@@ -8,9 +9,14 @@ namespace ForkusHotel.Controllers
         // GET api/booking
         [HttpGet]
         [Route("health")]
-        public bool HealthCheck()
+        public JsonResult HealthCheck()
         {
-            return true;
+            return Json(new HealthCheckDto { isAlive = true});
         }
+    }
+
+    internal class HealthCheckDto
+    {
+        public bool isAlive { get; set; }
     }
 }

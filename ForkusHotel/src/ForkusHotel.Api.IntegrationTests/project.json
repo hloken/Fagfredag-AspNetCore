@@ -1,0 +1,32 @@
+﻿{
+  "version": "1.0.0-*",
+
+  "dependencies": {
+    "Microsoft.AspNetCore.Hosting": "1.0.0",
+    "NETStandard.Library": "1.6.0",
+    "Microsoft.AspNetCore.TestHost": "1.0.0",
+    "Shouldly": "2.8.2",
+    "NUnit": "3.5.0",
+    "dotnet-test-nunit": "3.4.0-beta-2",
+    "ForkusHotel.Api": "1.0.0-*"
+  },
+
+  "testRunner": "nunit",
+
+  "frameworks": {
+    "netcoreapp1.0.1": {
+      "imports": "portable-net45+win8",
+      "dependencies": {
+        "Microsoft.NETCore.App": {
+          "version": "1.0.1-*",
+          "type": "platform"
+        }
+      }
+    }
+  }
+  //,
+
+  //"runtimes": {
+  //  "win10-x64": {}
+  //}
+}

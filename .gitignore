@@ -4,3 +4,4 @@ ForkusHotel/src/ForkusHotel/obj/**
 **/.vs/**
 **/obj/**
 **/bin/**
+**/TestResult.xml

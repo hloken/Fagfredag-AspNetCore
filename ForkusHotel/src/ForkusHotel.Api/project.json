@@ -22,10 +22,9 @@
   },
 
   "frameworks": {
-    "netcoreapp1.0": {
+    "netcoreapp1.0.1": {
       "imports": [
-        "dotnet5.6",
-        "portable-net45+win8"
+        "netstandard1.6"
       ]
     }
   },

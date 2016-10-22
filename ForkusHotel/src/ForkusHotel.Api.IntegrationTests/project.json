@@ -6,12 +6,12 @@
     "NETStandard.Library": "1.6.0",
     "Microsoft.AspNetCore.TestHost": "1.0.0",
     "Shouldly": "2.8.2",
-    "NUnit": "3.5.0",
-    "dotnet-test-nunit": "3.4.0-beta-2",
-    "ForkusHotel.Api": "1.0.0-*"
+    "ForkusHotel.Api": "1.0.0-*",
+    "dotnet-test-xunit": "2.2.0-preview2-build1029",
+    "xunit": "2.2.0-beta3-build3402"
   },
 
-  "testRunner": "nunit",
+  "testRunner": "xunit",
 
   "frameworks": {
     "netcoreapp1.0.1": {

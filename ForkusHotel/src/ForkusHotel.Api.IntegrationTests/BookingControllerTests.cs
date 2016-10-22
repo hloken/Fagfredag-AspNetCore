@@ -4,29 +4,28 @@ using System.Threading.Tasks;
 using ForkusHotel;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;
-using NUnit.Framework;
 using Shouldly;
+using Xunit;
 
 namespace ForkusHotelApiIntegrationTests
 {
-    [TestFixture]
     public class BookingControllerTests
     {
-        private readonly TestServer _server;
-        private readonly HttpClient _client;
+        private readonly HttpClient _apiClient;
 
         public BookingControllerTests()
         {
             // Arrange
-            _server = new TestServer(new WebHostBuilder()
+            var server = new TestServer(new WebHostBuilder()
                 .UseStartup<Startup>());
-            _client = _server.CreateClient();
+
+            _apiClient = server.CreateClient();
         }
 
-        [Test]
+        [Fact]
         public async Task HealthCheck()
         {
-            var response = await _client.GetAsync("/api/booking/health");
+            var response = await _apiClient.GetAsync("/api/booking/health");
 
             response.StatusCode.ShouldBe(HttpStatusCode.OK);
         }

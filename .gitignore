@@ -1,3 +1,6 @@
 ForkusHotel/.vs/**
 ForkusHotel/src/ForkusHotel/bin/**
 ForkusHotel/src/ForkusHotel/obj/**
+**/.vs/**
+**/obj/**
+**/bin/**

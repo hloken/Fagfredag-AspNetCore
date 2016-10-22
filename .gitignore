@@ -5,3 +5,4 @@ ForkusHotel/src/ForkusHotel/obj/**
 **/obj/**
 **/bin/**
 **/TestResult.xml
+project.lock.json

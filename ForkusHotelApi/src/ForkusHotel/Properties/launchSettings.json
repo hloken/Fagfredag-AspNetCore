@@ -18,8 +18,7 @@
     },
     "ForkusHotel": {
       "commandName": "Project",
-      "launchBrowser": true,
-      "launchUrl": "http://localhost:5000/api/values",
+      "launchUrl": "http://localhost:5000/api",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

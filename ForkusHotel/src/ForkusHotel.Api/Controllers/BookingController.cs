@@ -13,10 +13,13 @@ namespace ForkusHotel.Controllers
         {
             return Json(new HealthCheckDto { isAlive = true});
         }
-    }
 
-    internal class HealthCheckDto
-    {
-        public bool isAlive { get; set; }
+        internal class HealthCheckDto
+        {
+            public bool isAlive
+            {
+                get; set;
+            }
+        }
     }
 }

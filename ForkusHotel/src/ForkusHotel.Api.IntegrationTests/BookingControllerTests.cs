@@ -14,6 +14,7 @@ namespace ForkusHotelApiIntegrationTests
 {
     public class BookingControllerTests
     {
+        private const string bookingServicePath = "/api/booking";
         private readonly HttpClient _apiClient;
 
         public BookingControllerTests()
@@ -33,7 +34,7 @@ namespace ForkusHotelApiIntegrationTests
         [Fact]
         public async Task HealthCheck()
         {
-            var response = await _apiClient.GetAsync("/api/booking/health");
+            var response = await _apiClient.GetAsync($"{bookingServicePath}/health");
             var body = await FromBodyJson<HealtCheckDto>(response);
 
             response.StatusCode.ShouldBe(HttpStatusCode.OK);
@@ -48,7 +49,7 @@ namespace ForkusHotelApiIntegrationTests
         [Fact]
         public async Task RetrieveAllRoomTypes()
         {
-            var response = await _apiClient.GetAsync("/api/booking/roomtypes");
+            var response = await _apiClient.GetAsync($"{bookingServicePath}/roomtypes");
 
             var allRoomsDto = await FromBodyJson<AllRoomTypesDto>(response);
 

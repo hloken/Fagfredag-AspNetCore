@@ -6,8 +6,8 @@
   </PropertyGroup>
   <Import Project="$(VSToolsPath)\DotNet\Microsoft.DotNet.Props" Condition="'$(VSToolsPath)' != ''" />
   <PropertyGroup Label="Globals">
-    <ProjectGuid>4a00ad16-ac55-411d-9da6-73bccebe1c70</ProjectGuid>
-    <RootNamespace>ForkusHotel.Api</RootNamespace>
+    <ProjectGuid>aa7d0fc9-bb02-4271-85a1-c9d00ec76b52</ProjectGuid>
+    <RootNamespace>ForkusHotel.Api.Solution</RootNamespace>
     <BaseIntermediateOutputPath Condition="'$(BaseIntermediateOutputPath)'=='' ">.\obj</BaseIntermediateOutputPath>
     <OutputPath Condition="'$(OutputPath)'=='' ">.\bin\</OutputPath>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>

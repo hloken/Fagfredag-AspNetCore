@@ -1,4 +1,4 @@
-﻿{
+{
   "version": "1.0.0-*",
 
   "dependencies": {
@@ -8,7 +8,8 @@
     "Shouldly": "2.8.2",
     "ForkusHotel.Api": "1.0.0-*",
     "dotnet-test-xunit": "2.2.0-preview2-build1029",
-    "xunit": "2.2.0-beta3-build3402"
+    "xunit": "2.2.0-beta3-build3402",
+    "ForkusHotel.Api.Solution": "1.0.0-*"
   },
 
   "testRunner": "xunit",

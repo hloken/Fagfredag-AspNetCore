@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using Microsoft.AspNetCore.Hosting;
 
-namespace ForkusHotel.Api
+namespace ForkusHotel.Api.Solution
 {
     public class Program
     {

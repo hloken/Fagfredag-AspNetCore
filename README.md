@@ -37,7 +37,7 @@ To keep it simple don't worry about JSON serialization details (like dates). The
 ##### Request
 * Route: /api/booking/bookings
 * Method: Post
-* JOSN Body(example):
+* JSON Body(example):
 ``` json
 { 
     "roomType" : "ForkusSuite",
@@ -58,6 +58,12 @@ To keep it simple don't worry about JSON serialization details (like dates). The
 * JSON Body:
 ``` json
 { "error" : "Specified room-type is unavailable for time period specified" }
+```
+##### Response if time period is invalid
+* Status: 400 - Bad request
+* JSON Body:
+``` json
+{ "error" : "Specified time period is invalid" }
 ```
 ##### Response if specified roomtype is not available for time period
 * Staus: 409 - Conflict

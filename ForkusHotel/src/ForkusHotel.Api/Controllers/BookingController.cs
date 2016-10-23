@@ -1,25 +1,25 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-// ReSharper disable InconsistentNaming
 
-namespace ForkusHotel.Controllers
+// ReSharper disable InconsistentNaming
+// ReSharper disable UnusedAutoPropertyAccessor.Local
+
+namespace ForkusHotel.Api.Controllers
 {
-    [Route("api/booking")]
+    //[Route("api/booking")]    
+    [Route("api/bookingBase")]
     public class BookingController : Controller
     {
         // GET api/booking
         [HttpGet]
         [Route("health")]
-        public JsonResult HealthCheck()
+        public ActionResult HealthCheck()
         {
-            return Json(new HealthCheckDto { isAlive = true});
+            return Ok(new HealthCheckDto { isAlive = true});
         }
 
-        internal class HealthCheckDto
+        private class HealthCheckDto
         {
-            public bool isAlive
-            {
-                get; set;
-            }
+            public bool isAlive { get; set; }
         }
     }
 }

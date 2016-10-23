@@ -15,6 +15,8 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "ForkusHotel.Api", "src\Fork
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "ForkusHotel.Api.IntegrationTests", "src\ForkusHotel.Api.IntegrationTests\ForkusHotel.Api.IntegrationTests.xproj", "{2BF616B1-B841-4090-ACF0-22265381938D}"
 EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "ForkusHotel.Api.Solution", "src\ForkusHotel.Api.Solution\ForkusHotel.Api.Solution.xproj", "{AA7D0FC9-BB02-4271-85A1-C9D00EC76B52}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +31,10 @@ Global
 		{2BF616B1-B841-4090-ACF0-22265381938D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2BF616B1-B841-4090-ACF0-22265381938D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2BF616B1-B841-4090-ACF0-22265381938D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA7D0FC9-BB02-4271-85A1-C9D00EC76B52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA7D0FC9-BB02-4271-85A1-C9D00EC76B52}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA7D0FC9-BB02-4271-85A1-C9D00EC76B52}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA7D0FC9-BB02-4271-85A1-C9D00EC76B52}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -36,5 +42,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{4A00AD16-AC55-411D-9DA6-73BCCEBE1C70} = {52AF82B6-1AC8-4DC5-93E9-B6755596F147}
 		{2BF616B1-B841-4090-ACF0-22265381938D} = {52AF82B6-1AC8-4DC5-93E9-B6755596F147}
+		{AA7D0FC9-BB02-4271-85A1-C9D00EC76B52} = {52AF82B6-1AC8-4DC5-93E9-B6755596F147}
 	EndGlobalSection
 EndGlobal

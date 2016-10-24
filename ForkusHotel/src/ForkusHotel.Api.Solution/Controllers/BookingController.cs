@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Net;
 using ForkusHotel.Api.Solution.Persistence;
 using Microsoft.AspNetCore.Mvc;
 

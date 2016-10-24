@@ -1,0 +1,99 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Fagdag Asp.Net Core",
+		"_postman_id": "163c4172-aeeb-4334-2840-93377cb4d316",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "BookingService  health-check",
+			"request": {
+				"url": "http://localhost:5000/api/booking/health",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Retrieve all room-types",
+			"request": {
+				"url": "http://localhost:5000/api/booking/roomtypes",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Book a room - invalid time period",
+			"request": {
+				"url": "http://localhost:5000/api/booking/bookings",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n    \"roomType\" : \"ForkusSuite\",\n    \"startDate\" : \"2016-10-26T13:28:06.419Z\",\n    \"numberOfNights\" : \"0\",\n    \"guestName\" : \"Kjell Lj0stad\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Book a room - valid booking",
+			"request": {
+				"url": "http://localhost:5000/api/booking/bookings",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \r\n    \"roomType\" : \"ForkusSuite\",\r\n    \"startDate\" : \"2016-10-26T13:28:06.419Z\",\r\n    \"numberOfNights\" : \"3\",\r\n    \"guestName\" : \"Kjell Lj0stad\"\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Retrieve all bookings",
+			"request": {
+				"url": "http://localhost:5000/api/booking/bookings",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n    \"roomType\" : \"ForkusSuite\",\n    \"startDate\" : \"2016-10-26T13:28:06.419Z\",\n    \"numberOfNights\" : \"0\",\n    \"guestName\" : \"Kjell Lj0stad\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

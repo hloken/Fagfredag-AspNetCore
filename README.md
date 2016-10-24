@@ -117,6 +117,15 @@ To keep it simple don't worry about JSON serialization details (like dates). The
 * Status: 404 - Not found
 
 
+### Cancel a booking
+* Route: /api/booking/bookings/{bookingId}
+* Method: Delete
+##### Response on success: 
+* Status: 204 - No Content
+##### Response if bookingId is unknown
+* Status: 404 - Not found
+
+
 ### Change the roomtype of a booking
 * Route: /api/booking/bookings/\{bookingId\}/roomtype
 * Method: Put

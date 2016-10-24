@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ForkusHotel.Api.Solution.Persistence
 {
@@ -7,13 +8,29 @@ namespace ForkusHotel.Api.Solution.Persistence
     {
         private List<Booking> _bookings = new List<Booking>();
 
-        public Guid NewBooking(string roomType, DateTime startDate, int numberOfNights, string guestName)
+        public Guid BookARoom(string roomType, DateTime startDate, int numberOfNights, string guestName)
         {
             var bookingId = Guid.NewGuid();
 
             _bookings.Add(Booking.Create(bookingId, roomType, startDate, numberOfNights, guestName));
 
             return bookingId;
+        }
+
+        public BookingListDto RetrieveAllBookings()
+        {
+            return new BookingListDto
+            {
+                bookings = (from booking in _bookings
+                    select new BookingListItemDto
+                    {
+                        bookingId = booking.BookingId,
+                        roomType = booking.RoomType,
+                        startDate = booking.StartDate,
+                        numberOfNights = booking.NumberOfNights,
+                        guestName = booking.GuestName
+                    }).ToArray()
+            };
         }
 
         private class Booking
@@ -30,11 +47,11 @@ namespace ForkusHotel.Api.Solution.Persistence
                 };
             }
 
-            private Guid BookingId { get; set; }
-            private string RoomType { get; set; }
-            private DateTime StartDate { get; set; }
-            private int NumberOfNights { get; set; }
-            private string GuestName { get; set; }
+            internal Guid BookingId { get; set; }
+            internal string RoomType { get; set; }
+            internal DateTime StartDate { get; set; }
+            internal int NumberOfNights { get; set; }
+            internal string GuestName { get; set; }
         }
     }
 }

@@ -47,10 +47,20 @@ namespace ForkusHotel.Api.Solution.Controllers
             if (bookingRequestDto.numberOfNights < 1)
                 return BadRequest(new ErrorResponseDto { error = "Specified time period is invalid"} );
 
-            var bookingId = _bookingCommands.NewBooking(bookingRequestDto.roomType, bookingRequestDto.startDate, bookingRequestDto.numberOfNights,
+            var bookingId = _bookingCommands.BookARoom(bookingRequestDto.roomType, bookingRequestDto.startDate, bookingRequestDto.numberOfNights,
                 bookingRequestDto.guestName);
 
             return Created($"api/booking/bookings/{bookingId}", new NewBookingSuccessResponseDto { bookingId = bookingId});
+        }
+
+        // Get api/booking/bookings
+        [HttpGet]
+        [Route("bookings")]
+        public ActionResult RetrieveAllBookings()
+        {
+            var bookingsDto = _bookingQueries.RetrieveAllBookings();
+
+            return Ok(bookingsDto);
         }
 
         public class HealthCheckResponseDto { public bool isAlive { get; set; } }
@@ -67,7 +77,6 @@ namespace ForkusHotel.Api.Solution.Controllers
 
         public class NewBookingSuccessResponseDto { public Guid bookingId { get; set; } }
 
-        public class ErrorResponseDto {
-            public string error { get; set; } }
+        public class ErrorResponseDto { public string error { get; set; } }
     }
 }

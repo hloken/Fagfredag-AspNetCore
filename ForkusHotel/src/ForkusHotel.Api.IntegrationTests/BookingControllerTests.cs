@@ -1,14 +1,13 @@
-﻿using System;
-using System.Net;
+﻿using System.Net;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
-using ForkusHotel.Api;
+using ForkusHotel.Api.Solution;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;
-using Newtonsoft.Json;
 using Shouldly;
 using Xunit;
+using static ForkusHotelApiIntegrationTests.TestUtils;
+
 // ReSharper disable InconsistentNaming
 // ReSharper disable ClassNeverInstantiated.Local
 // ReSharper disable UnusedAutoPropertyAccessor.Local
@@ -33,7 +32,7 @@ namespace ForkusHotelApiIntegrationTests
         public async Task HealthCheck()
         {
             var response = await _apiClient.GetAsync($"{bookingServicePath}/health");
-            var body = await FromBodyJson<HealtCheckDto>(response);
+            var body = await response.GetBodyAsJson<HealtCheckDto>();
 
             response.StatusCode.ShouldBe(HttpStatusCode.OK);
             body.isAlive.ShouldBe(true);
@@ -49,7 +48,7 @@ namespace ForkusHotelApiIntegrationTests
         {
             var response = await _apiClient.GetAsync($"{bookingServicePath}/roomtypes");
 
-            var allRoomsDto = await FromBodyJson<AllRoomTypesDto>(response);
+            var allRoomsDto = await response.GetBodyAsJson<AllRoomTypesDto>();
 
             response.StatusCode.ShouldBe(HttpStatusCode.OK);
             allRoomsDto.roomTypes.ShouldContain("Single");
@@ -64,55 +63,59 @@ namespace ForkusHotelApiIntegrationTests
         [Fact]
         public async Task BookARoom_WithValidRequestAndRoomIsAvailable()
         {
-            var content = ToJsonStringContentFrom(new
+            var content = new
             {
                 roomType = "ForkusSuite",
                 startDate = "2016-10-21T13:28:06.419Z",
                 numberOfNights = 3,
                 guestName = "Kjell Lj0stad"
-            });
+            }.ToJsonStringContent();
+
             var response = await _apiClient.PostAsync($"{bookingServicePath}/bookings", content);
 
             response.StatusCode.ShouldBe(HttpStatusCode.Created);
 
-            var bookingId = (await FromBodyJson<RoomBookingResponseDto>(response)).bookingId;
+            var bookingId = (await response.GetBodyAsJson<RoomBookingResponseDto>()).bookingId;
             response.Headers.Location.OriginalString.ShouldBe($"api/booking/bookings/{bookingId}");
         }
 
         [Fact]
         public async Task BookARoom_WithInvalidTimePeriod()
         {
-            var content = ToJsonStringContentFrom(new
+            var content = new
             {
                 roomType = "ForkusSuite",
                 startDate = "2016-10-21T13:28:06.419Z",
-                numberOfNights = 03,
+                numberOfNights = -1,
                 guestName = "Kjell Lj0stad"
-            });
+            }.ToJsonStringContent();
+
             var response = await _apiClient.PostAsync($"{bookingServicePath}/bookings", content);
 
             response.StatusCode.ShouldBe(HttpStatusCode.BadRequest);
 
-            var bookingId = (await FromBodyJson<RoomBookingResponseDto>(response)).bookingId;
+            var errorMessage = (await response.GetBodyAsJson<ErrorResponseDto>()).error;
+            errorMessage.ShouldNotBe(string.Empty);
         }
 
-        private class RoomBookingResponseDto { public Guid bookingId { get; set; } }
-        private class AllRoomTypesDto { public string[] roomTypes { get; set; } }
-
-        private StringContent ToJsonStringContentFrom<T>(T dtoObject)
+        [Fact]
+        public async Task RetrieveListOfAllBookings_WithOneBooking()
         {
-            var json = JsonConvert.SerializeObject(dtoObject);
-            var content = new StringContent(json, Encoding.UTF8, "application/json");
+            // Arrange
+            var bookingId = await _apiClient.SetupABooking();
 
-            return content;
-        }
+            // Act
+            var response = await _apiClient.GetAsync($"{bookingServicePath}/bookings");
 
-        private async Task<T> FromBodyJson<T>(HttpResponseMessage response)
-        {
-            var content = await response.Content.ReadAsStringAsync();
-            var body = JsonConvert.DeserializeObject<T>(content);
+            response.StatusCode.ShouldBe(HttpStatusCode.OK);
 
-            return body;
+            var bookingsDto = (await response.GetBodyAsJson<BookingListDto>());
+            bookingsDto.bookings.Length.ShouldBe(1);
+
+            var firstBooking = bookingsDto.bookings[0];
+            firstBooking.bookingId.ShouldBe(bookingId);
         }
     }
+
+    
 }

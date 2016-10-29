@@ -1,4 +1,6 @@
 ﻿using ForkusHotel.Api.Solution.Persistence;
+using ForkusHotel.Api.Solution.ReadModels;
+using ForkusHotel.Api.Solution.WriteModels;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -27,10 +29,12 @@ namespace ForkusHotel.Api.Solution
             // Add framework services.
             services.AddMvc();
 
-            // Add booking persistence models
-            var bookingStore = new BookingStore();
-            services.AddSingleton<IBookingCommands>(bookingStore);
-            services.AddSingleton<IBookingQueries>(bookingStore);
+            // Add booking read/write models
+            services.AddSingleton<IBookingCommands, BookingCommands>();
+            services.AddSingleton<IBookingQueries, BookingQueries>();
+
+            // Add booking persistence model
+            services.AddSingleton<BookingStore>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

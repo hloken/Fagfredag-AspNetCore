@@ -1,5 +1,6 @@
 ﻿using System;
-using ForkusHotel.Api.Solution.Persistence;
+using ForkusHotel.Api.Solution.ReadModels;
+using ForkusHotel.Api.Solution.WriteModels;
 using Microsoft.AspNetCore.Mvc;
 
 // ReSharper disable InconsistentNaming
@@ -20,16 +21,14 @@ namespace ForkusHotel.Api.Solution.Controllers
         }
 
         // GET api/booking/health
-        [HttpGet]
-        [Route("health")]
+        [HttpGet("health")]
         public ActionResult HealthCheck()
         {
             return Json(new HealthCheckResponseDto { isAlive = true });
         }
 
         // GET api/booking/roomtypes
-        [HttpGet]
-        [Route("roomtypes")]
+        [HttpGet("roomtypes")]
         public ActionResult RetrieveAllRoomTypes()
         {
             return Json(new RetrieveAllRoomTypesResponseDto
@@ -39,8 +38,7 @@ namespace ForkusHotel.Api.Solution.Controllers
         }
 
         // POST api/booking/bookings
-        [HttpPost]
-        [Route("bookings")]
+        [HttpPost("bookings")]
         public ActionResult NewBooking([FromBody]NewBookingRequestDto bookingRequestDto)
         {
             if (bookingRequestDto.numberOfNights < 1)
@@ -53,8 +51,7 @@ namespace ForkusHotel.Api.Solution.Controllers
         }
 
         // Get api/booking/bookings
-        [HttpGet]
-        [Route("bookings")]
+        [HttpGet("bookings")]
         public ActionResult RetrieveAllBookings()
         {
             var bookingsDto = _bookingQueries.RetrieveAllBookings();

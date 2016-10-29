@@ -1,0 +1,9 @@
+﻿using System;
+
+namespace ForkusHotel.Api.Solution.WriteModels
+{
+    public interface IBookingCommands
+    {
+        Guid BookARoom(string roomType, DateTime startDate, int numberOfNights, string guestName);
+    }
+}

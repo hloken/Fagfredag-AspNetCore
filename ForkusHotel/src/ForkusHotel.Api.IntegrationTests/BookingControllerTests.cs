@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using ForkusHotel.Api/*.Solution*/;
@@ -7,6 +8,9 @@ using Microsoft.AspNetCore.TestHost;
 using Shouldly;
 using Xunit;
 using static ForkusHotelApiIntegrationTests.TestUtils;
+// ReSharper disable ArgumentsStyleLiteral
+// ReSharper disable RedundantArgumentDefaultValue
+// ReSharper disable ArgumentsStyleStringLiteral
 
 // ReSharper disable InconsistentNaming
 // ReSharper disable ClassNeverInstantiated.Local
@@ -29,7 +33,7 @@ namespace ForkusHotelApiIntegrationTests
         }
 
         [Fact]
-        public async Task HealthCheck()
+        public async Task HealthCheck_ShouldReturnStatusOKAndIsAliveTrue()
         {
             var response = await _apiClient.GetAsync($"{bookingServicePath}/health");
             var body = await response.GetBodyAsJson<HealtCheckDto>();
@@ -44,7 +48,7 @@ namespace ForkusHotelApiIntegrationTests
         }
 
         [Fact]
-        public async Task RetrieveAllRoomTypes()
+        public async Task RetrieveAllRoomTypes_ShouldReturnAllRoomTypes()
         {
             var response = await _apiClient.GetAsync($"{bookingServicePath}/roomtypes");
 
@@ -61,7 +65,7 @@ namespace ForkusHotelApiIntegrationTests
         }
 
         [Fact]
-        public async Task BookARoom_WithValidRequestAndRoomIsAvailable()
+        public async Task BookARoom_WithValidRequestAndRoomIsAvailable_ShouldReturnStatusCreatedAndLocationHeader()
         {
             var content = new
             {
@@ -80,7 +84,28 @@ namespace ForkusHotelApiIntegrationTests
         }
 
         [Fact]
-        public async Task BookARoom_WithInvalidTimePeriod()
+        public async Task BookARoom_WithCollision_ShouldReturnStatusConflict()
+        {
+            // Arrange
+            await _apiClient.SetupABooking(start: "2016-10-19T12:00:00.000Z", numberOfNights : 4, roomType : "ForkusSuite");
+
+            // Act
+            var content = new
+            {
+                roomType = "ForkusSuite",
+                startDate = "2016-10-21T13:28:06.419Z",
+                numberOfNights = 3,
+                guestName = "Kjell Lj0stad"
+            }.ToJsonStringContent();
+
+            var response = await _apiClient.PostAsync($"{bookingServicePath}/bookings", content);
+
+            // Assert
+            response.StatusCode.ShouldBe(HttpStatusCode.Conflict);
+        }
+
+        [Fact]
+        public async Task BookARoom_WithInvalidTimePeriod_ShouldReturnBadRequestAndErrorMessage()
         {
             var content = new
             {

@@ -12,12 +12,16 @@ namespace ForkusHotelApiIntegrationTests
     {
         private const string BookingServicePath = "api/booking";
 
-        public static async Task<Guid> SetupABooking(this HttpClient httpClient)
+        public static async Task<Guid> SetupABooking(
+            this HttpClient httpClient, 
+            string start = "2016-10-21T13:28:06.419Z", 
+            int numberOfNights=3, 
+            string roomType= "ForkusSuite")
         {
             var content = ToJsonStringContent(new
             {
                 roomType = "ForkusSuite",
-                startDate = "2016-10-21T13:28:06.419Z",
+                startDate = start,
                 numberOfNights = 3,
                 guestName = "Kjell Lj0stad"
             });

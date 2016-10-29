@@ -6,6 +6,7 @@ namespace ForkusHotel.Api.Solution.ReadModels
     public interface IBookingQueries
     {
         BookingListDto RetrieveAllBookings();
+        bool IsCollision(DateTime startDate, int numberOfNights, string roomType);
     }
 
     public class BookingListDto

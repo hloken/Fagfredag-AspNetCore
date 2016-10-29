@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using ForkusHotel.Api.Solution.ReadModels;
 using ForkusHotel.Api.Solution.WriteModels;
 using Microsoft.AspNetCore.Mvc;
@@ -24,7 +25,7 @@ namespace ForkusHotel.Api.Solution.Controllers
         [HttpGet("health")]
         public ActionResult HealthCheck()
         {
-            return Json(new HealthCheckResponseDto { isAlive = true });
+            return Ok(new HealthCheckResponseDto { isAlive = true });
         }
 
         // GET api/booking/roomtypes
@@ -43,6 +44,10 @@ namespace ForkusHotel.Api.Solution.Controllers
         {
             if (bookingRequestDto.numberOfNights < 1)
                 return BadRequest(new ErrorResponseDto { error = "Specified time period is invalid"} );
+
+            if (_bookingQueries.IsCollision(bookingRequestDto.startDate, bookingRequestDto.numberOfNights,
+                bookingRequestDto.roomType))
+                return StatusCode( (int)HttpStatusCode.Conflict);
 
             var bookingId = _bookingCommands.BookARoom(bookingRequestDto.roomType, bookingRequestDto.startDate, bookingRequestDto.numberOfNights,
                 bookingRequestDto.guestName);

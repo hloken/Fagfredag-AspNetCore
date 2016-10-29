@@ -5,13 +5,11 @@
 
 namespace ForkusHotel.Api.Controllers
 {
-    //[Route("api/booking")]    
-    [Route("api/bookingBase")]
+    [Route("api/booking")]
     public class BookingController : Controller
     {
         // GET api/booking
-        [HttpGet]
-        [Route("health")]
+        [HttpGet("health")]
         public ActionResult HealthCheck()
         {
             return Ok(new HealthCheckDto { isAlive = true});

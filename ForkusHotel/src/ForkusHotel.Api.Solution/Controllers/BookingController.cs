@@ -45,7 +45,7 @@ namespace ForkusHotel.Api.Solution.Controllers
             if (bookingRequestDto.numberOfNights < 1)
                 return BadRequest(new ErrorResponseDto { error = "Specified time period is invalid"} );
 
-            if (_bookingQueries.IsCollision(bookingRequestDto.startDate, bookingRequestDto.numberOfNights,
+            if (_bookingCommands.IsCollision(bookingRequestDto.startDate, bookingRequestDto.numberOfNights,
                 bookingRequestDto.roomType))
                 return StatusCode( (int)HttpStatusCode.Conflict);
 

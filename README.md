@@ -118,7 +118,7 @@ To keep it simple don't worry about JSON serialization details (like dates). The
 
 
 ### Cancel a booking
-* Route: /api/booking/bookings/{bookingId}
+* Route: /api/booking/bookings/\{bookingId\}
 * Method: Delete
 ##### Response on success: 
 * Status: 204 - No Content

@@ -32,7 +32,7 @@ namespace ForkusHotel.Api.Solution.Controllers
         [HttpGet("roomtypes")]
         public ActionResult RetrieveAllRoomTypes()
         {
-            return Json(new RetrieveAllRoomTypesResponseDto
+            return Ok(new RetrieveAllRoomTypesResponseDto
             {
                 roomTypes = new[] { "Single", "Double", "Twin", "DeluxeDouble", "JuniorSuite", "Suite", "ForkusSuite" }
             });

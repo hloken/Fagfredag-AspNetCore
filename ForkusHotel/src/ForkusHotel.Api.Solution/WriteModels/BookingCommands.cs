@@ -26,10 +26,10 @@ namespace ForkusHotel.Api.Solution.WriteModels
         {
             return
                 _bookingStore.Bookings.Any(
-                    booking => roomType == booking.RoomType && DoesBookingsIntersect(startDate, numberOfNights, booking));
+                    booking => roomType == booking.RoomType && DoBookingsIntersect(startDate, numberOfNights, booking));
         }
 
-        private bool DoesBookingsIntersect(DateTime startDate, int numberOfNights, BookingStore.Booking booking)
+        private bool DoBookingsIntersect(DateTime startDate, int numberOfNights, BookingStore.Booking booking)
         {
             var endDate = startDate.AddDays(numberOfNights);
             var bookingEndDate = booking.StartDate.AddDays(booking.NumberOfNights);

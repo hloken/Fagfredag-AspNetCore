@@ -1,5 +1,5 @@
-# Welcome to Webstep Fokus Asp.Net Core Fagdag!
-This readme contains information for the Asp.Net Core WebApi hands-on exercise. 
+# Welcome to Webstep Fokus ASP.NET Core Fagdag!
+This readme contains information for the ASP.NET Core WebApi hands-on exercise. 
 
 ### Your mission should you choose to accept it
 The goal of this hands-on exercise is to implement a REST-based API for the booking department of the Forkus Hotel. 
@@ -16,6 +16,9 @@ Note: current directory must be in the integration-tests project folder for the 
 
 ### Postman testing
 There is a postman collection "postman_collection.json" at the root of the repo that has pre-defined requests for the same scenarios as the integration tests.
+
+### Suggested solution
+The "ForkusHotel.Api.Solution"-folder contains suggested solutions for the first part of the assignment. It is not complete. Tests and postman-collection should work as specified with the solution project.
 
 ## Specification
 What follows is the specification for the API. 

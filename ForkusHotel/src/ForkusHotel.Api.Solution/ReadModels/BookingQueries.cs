@@ -1,3 +1,4 @@
+using System;
 using ForkusHotel.Api.Solution.Persistence;
 using System.Linq;
 
@@ -23,9 +24,28 @@ namespace ForkusHotel.Api.Solution.ReadModels
                                 roomType = booking.RoomType,
                                 startDate = booking.StartDate,
                                 numberOfNights = booking.NumberOfNights,
-                                guestName = booking.GuestName
+                                guestName = booking.GuestName,
                             }).ToArray()
             };
+        }
+
+        public BookingDetailsDto RetrieveBookingDetails(Guid bookingId)
+        {
+            var dto = (from booking in _bookingStore.Bookings
+                where booking.BookingId == bookingId
+                select new BookingDetailsDto
+                {
+                    bookingId = booking.BookingId,
+                    roomType = booking.RoomType,
+                    startDate = booking.StartDate,
+                    numberOfNights = booking.NumberOfNights,
+                    guestName = booking.GuestName,
+                    paymentConfirmed = booking.PaymentConfirmed,
+                    checkedIn = booking.CheckedIn,
+                    checkedOut = booking.CheckedOut
+                }).SingleOrDefault();
+
+            return dto;
         }
     }
 }

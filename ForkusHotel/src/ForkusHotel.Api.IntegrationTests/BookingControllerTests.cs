@@ -140,6 +140,33 @@ namespace ForkusHotelApiIntegrationTests
             var firstBooking = bookingsDto.bookings[0];
             firstBooking.bookingId.ShouldBe(bookingId);
         }
+
+        [Fact]
+        public async Task RetrieveBookingDetails_WithValidBooking_ShouldReturnOkAndBookingDetails()
+        {
+            // Arrange
+            var bookingId = await _apiClient.SetupABooking();
+
+            // Act
+            var response = await _apiClient.GetAsync($"{bookingServicePath}/bookings/{bookingId}");
+
+            response.StatusCode.ShouldBe(HttpStatusCode.OK);
+
+            var bookingDetailsDto = (await response.GetBodyAsJson<BookingDetailsDto>());
+            bookingDetailsDto.bookingId.ShouldBe(bookingId);
+            bookingDetailsDto.guestName.ShouldContain("Kjell");
+            // Blah blah
+        }
+
+        [Fact]
+        public async Task RetrieveBookingDetails_WithNoMatchingBooking_ShouldReturnNotFound()
+        {
+            // Act
+            var randomBookingId = Guid.NewGuid();
+            var response = await _apiClient.GetAsync($"{bookingServicePath}/bookings/{randomBookingId}");
+
+            response.StatusCode.ShouldBe(HttpStatusCode.NotFound);
+        }
     }
 
     

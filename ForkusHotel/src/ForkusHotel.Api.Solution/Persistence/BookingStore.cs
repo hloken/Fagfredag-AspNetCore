@@ -26,6 +26,10 @@ namespace ForkusHotel.Api.Solution.Persistence
             internal DateTime StartDate { get; set; }
             internal int NumberOfNights { get; set; }
             internal string GuestName { get; set; }
+
+            internal bool PaymentConfirmed { get; set; }
+            internal bool CheckedIn { get; set; }
+            internal bool CheckedOut { get; set; }
         }
     }
 }

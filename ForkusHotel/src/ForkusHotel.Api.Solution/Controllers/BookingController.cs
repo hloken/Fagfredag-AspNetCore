@@ -64,6 +64,19 @@ namespace ForkusHotel.Api.Solution.Controllers
             return Ok(bookingsDto);
         }
 
+        // Get api/booking/bookings/{bookingId}
+        [HttpGet("bookings/{bookingId}")]
+        public ActionResult RetrieveBookingDetails(Guid bookingId)
+        {
+            var bookingDetailsDto = _bookingQueries.RetrieveBookingDetails(bookingId);
+
+            if (bookingDetailsDto != null)
+                return Ok(bookingDetailsDto);
+
+            return NotFound();
+        }
+
+        // TODO: Make these contracts more explicit and versionable
         public class HealthCheckResponseDto { public bool isAlive { get; set; } }
 
         public class RetrieveAllRoomTypesResponseDto { public string[] roomTypes { get; set; } }

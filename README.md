@@ -12,7 +12,7 @@ Run this either through the *Visual Studio Test Explorer* or from the command-li
 ``` cmd
 dotnet test
 ```
-Note: you current directory must be in the integration-tests folder for the command-line to work.
+Note: current directory must be in the integration-tests project folder for the command to work.
 
 ### Postman testing
 There is a postman collection "postman_collection.json" at the root of the repo that has pre-defined requests for the same scenarios as the integration tests.

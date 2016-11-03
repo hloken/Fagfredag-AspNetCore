@@ -7,12 +7,15 @@ This document will provide a specification of API calls with expected results an
 You can then use tests to test if your implementation follows the spec. 
 
 ### Testing
-The solution includes a test-project for the API.
+The solution includes a test-project for the API. The test suite is not complete for all the assignments.
 Run this either through the *Visual Studio Test Explorer* or from the command-line using:
 ``` cmd
 dotnet test
 ```
+Note: you current directory must be in the integration-tests folder for the command-line to work.
 
+### Postman testing
+There is a postman collection "postman_collection.json" at the root of the repo that has pre-defined requests for the same scenarios as the integration tests.
 
 ## Specification
 What follows is the specification for the API. 

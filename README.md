@@ -19,10 +19,11 @@ What follows is the specification for the API.
 To keep it simple don't worry about JSON serialization details (like dates). These are up to your implementation
 
 ### Retrieve all room types
-##### Request
+#### Request
 * Route: /api/booking/roomtypes
 * Method: Get
-##### Response
+
+#### Response
 * Status: 200 - Ok
 * JSON Body: 
 ``` json
@@ -32,6 +33,7 @@ To keep it simple don't worry about JSON serialization details (like dates). The
     "ForkusSuite"
 ]}
 ```
+
 
 ### Book a room
 ##### Request
@@ -46,6 +48,7 @@ To keep it simple don't worry about JSON serialization details (like dates). The
     "guestName" : "Kjell Lj0stad"
 }
 ```
+
 ##### Response on success: 
 * Status: 201 - Created
 * Location header: /api/booking/bookings/\{newBookingId\}
@@ -53,18 +56,21 @@ To keep it simple don't worry about JSON serialization details (like dates). The
 ``` json
 { "bookingId" : "{newBookingId}" }
 ```
+
 ##### Response if roomtype is unknown
 * Status: 400 - Bad request
 * JSON Body:
 ``` json
 { "error" : "Specified room-type is unavailable for time period specified" }
 ```
+
 ##### Response if time period is invalid
 * Status: 400 - Bad request
 * JSON Body:
 ``` json
 { "error" : "Specified time period is invalid" }
 ```
+
 ##### Response if specified roomtype is not available for time period
 * Staus: 409 - Conflict
 
@@ -72,6 +78,7 @@ To keep it simple don't worry about JSON serialization details (like dates). The
 ### Retrieve list of all bookings
 * Route: /api/booking/bookings
 * Method: Get
+
 ##### Response on success: 
 * Status: 200 - Ok
 * JSON Body(example):
@@ -99,6 +106,7 @@ To keep it simple don't worry about JSON serialization details (like dates). The
 ### Retrieve details for a booking
 * Route: /api/booking/bookings/{bookingId}
 * Method: Get
+
 ##### Response on success: 
 * Status: 200 - Ok
 * JSON Body(example):
@@ -113,6 +121,7 @@ To keep it simple don't worry about JSON serialization details (like dates). The
     "checkedOut" : false
 }
 ```
+
 ##### Response if bookingId is unknown
 * Status: 404 - Not found
 
@@ -120,8 +129,10 @@ To keep it simple don't worry about JSON serialization details (like dates). The
 ### Cancel a booking
 * Route: /api/booking/bookings/\{bookingId\}
 * Method: Delete
+
 ##### Response on success: 
 * Status: 204 - No Content
+
 ##### Response if bookingId is unknown
 * Status: 404 - Not found
 
@@ -135,8 +146,10 @@ To keep it simple don't worry about JSON serialization details (like dates). The
 ```
 ##### Response on success: 
 * Status: 204 - No content
+
 ##### Response if bookingId is unknown
 * Status: 404 - Not found
+
 ##### Response if roomtype is unknown
 * Status: 404 - Not found
 * JSON Body:
@@ -147,10 +160,13 @@ To keep it simple don't worry about JSON serialization details (like dates). The
 ### Checking in
 * Route: /api/booking/bookings/\{bookingId\}/checkin
 * Method: Put
+
 ##### Response on success: 
 * Status: 204 - No content 
+
 ##### Response if bookingId is unknown
 * Status: 404 - Not found
+
 ##### Response if already checked in 
 * Status: 404 - Not found
 * JSON Body:
@@ -161,10 +177,13 @@ To keep it simple don't worry about JSON serialization details (like dates). The
 ### Checking out
 * Route: /api/booking/bookings/\{bookingId\}/checkout
 * Method: Put
+
 ##### Response on success: 
 * Status: 204 - No content 
+
 ##### Response if bookingId is unknown 
 * Status: 404 - Not found
+
 ##### Response if already checked out 
 * Status: 404 - Not found
 * JSON Body:

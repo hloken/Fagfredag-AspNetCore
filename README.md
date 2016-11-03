@@ -64,7 +64,7 @@ To keep it simple don't worry about JSON serialization details (like dates). The
 * Status: 400 - Bad request
 * JSON Body:
 ``` json
-{ "error" : "Specified room-type is unavailable for time period specified" }
+{ "error" : "Unknown room-type specified" }
 ```
 
 ##### Response if time period is invalid

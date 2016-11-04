@@ -56,6 +56,26 @@
 			"response": []
 		},
 		{
+			"name": "Book a room - invalid roomtype",
+			"request": {
+				"url": "http://localhost:5000/api/booking/bookings",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n    \"roomType\" : \"SuperDeluxeMegaSuite\",\n    \"startDate\" : \"2016-10-26T13:28:06.419Z\",\n    \"numberOfNights\" : \"3\",\n    \"guestName\" : \"Kjell Lj0stad\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
 			"name": "Book a room - valid booking",
 			"request": {
 				"url": "http://localhost:5000/api/booking/bookings",

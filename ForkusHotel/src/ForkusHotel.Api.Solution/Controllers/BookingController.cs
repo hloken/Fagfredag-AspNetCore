@@ -3,6 +3,8 @@ using System.Net;
 using ForkusHotel.Api.Solution.ReadModels;
 using ForkusHotel.Api.Solution.WriteModels;
 using Microsoft.AspNetCore.Mvc;
+// ReSharper disable MemberCanBePrivate.Global
+// ReSharper disable UnusedAutoPropertyAccessor.Global
 
 // ReSharper disable InconsistentNaming
 // ReSharper disable UnusedAutoPropertyAccessor.Local
@@ -34,7 +36,7 @@ namespace ForkusHotel.Api.Solution.Controllers
         {
             return Ok(new RetrieveAllRoomTypesResponseDto
             {
-                roomTypes = new[] { "Single", "Double", "Twin", "DeluxeDouble", "JuniorSuite", "Suite", "ForkusSuite" }
+                roomTypes = _bookingQueries.RetrieveAllRoomTypes()
             });
         }
 
@@ -44,6 +46,9 @@ namespace ForkusHotel.Api.Solution.Controllers
         {
             if (bookingRequestDto.numberOfNights < 1)
                 return BadRequest(new ErrorResponseDto { error = "Specified time period is invalid"} );
+
+            if (!_bookingCommands.IsValidRoomType(bookingRequestDto.roomType))
+                return BadRequest(new ErrorResponseDto { error = "Unknown room-type specified" });
 
             if (_bookingCommands.IsCollision(bookingRequestDto.startDate, bookingRequestDto.numberOfNights,
                 bookingRequestDto.roomType))
@@ -93,4 +98,4 @@ namespace ForkusHotel.Api.Solution.Controllers
 
         public class ErrorResponseDto { public string error { get; set; } }
     }
-}
+} 

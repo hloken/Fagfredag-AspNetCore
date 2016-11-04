@@ -1,5 +1,6 @@
 using System;
 // ReSharper disable InconsistentNaming
+// ReSharper disable UnusedAutoPropertyAccessor.Global
 
 namespace ForkusHotel.Api.Solution.ReadModels
 {
@@ -7,6 +8,7 @@ namespace ForkusHotel.Api.Solution.ReadModels
     {
         BookingListDto RetrieveAllBookings();
         BookingDetailsDto RetrieveBookingDetails(Guid bookingId);
+        string[] RetrieveAllRoomTypes();
     }
 
     // TODO: since these classes are exposed on the wire they should be made explicit contracts

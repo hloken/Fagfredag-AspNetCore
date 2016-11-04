@@ -124,6 +124,27 @@ namespace ForkusHotelApiIntegrationTests
         }
 
         [Fact]
+        public async Task BookARoom_WithInvalidRoomType()
+        {
+            // Act
+            var content = new
+            {
+                roomType = "Super Deluxe Suite",
+                startDate = "2016-10-21T13:28:06.419Z",
+                numberOfNights = 24,
+                guestName = "Kjell Lj0stad"
+            }.ToJsonStringContent();
+
+            var response = await _apiClient.PostAsync($"{bookingServicePath}/bookings", content);
+
+            // Assert
+            response.StatusCode.ShouldBe(HttpStatusCode.BadRequest);
+
+            var errorMessage = (await response.GetBodyAsJson<ErrorResponseDto>()).error;
+            errorMessage.ShouldNotBe(string.Empty);
+        }
+
+        [Fact]
         public async Task RetrieveListOfAllBookings_WithOneBooking()
         {
             // Arrange

@@ -1,6 +1,7 @@
 using System;
 using ForkusHotel.Api.Solution.Persistence;
 using System.Linq;
+// ReSharper disable ClassNeverInstantiated.Global
 
 namespace ForkusHotel.Api.Solution.ReadModels
 {
@@ -46,6 +47,12 @@ namespace ForkusHotel.Api.Solution.ReadModels
                 }).SingleOrDefault();
 
             return dto;
+        }
+
+        public string[] RetrieveAllRoomTypes()
+        {
+            return (from roomType in RoomType.AllRoomTypes
+                select roomType.Name).ToArray();
         }
     }
 }

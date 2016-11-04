@@ -29,6 +29,12 @@ namespace ForkusHotel.Api.Solution.WriteModels
                     booking => roomType == booking.RoomType && DoBookingsIntersect(startDate, numberOfNights, booking));
         }
 
+        public bool IsValidRoomType(string roomType)
+        {
+            return
+                RoomType.AllRoomTypes.Any(rt => rt.Name == roomType);
+        }
+
         private bool DoBookingsIntersect(DateTime startDate, int numberOfNights, BookingStore.Booking booking)
         {
             var endDate = startDate.AddDays(numberOfNights);
